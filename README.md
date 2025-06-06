@@ -56,17 +56,17 @@ kiểm tra tín hiệu ở mọi độ rộng và mọi vị trí - cực kỳ c
 ### 2. Biến đổi Wavelet rời rạc (DWT) ###
 #### *Ý tưởng*: #### 
 Chỉ lấy một số hữu hạn giá trị của hệ số co giãn và dịch chuyển - thường theo dạng nhị phân:
-- scale: a = 2^j (Thang)
-- shift: b = k.2^j (Dịch)
+- scale: `a = 2^j` (Thang)
+- shift: `b = k.2^j` (Dịch)
 Tức là: mỗi tầng phân tích tín hiệu ở độ phân giải thấp hơn gấp đôi
 
 #### *Công thức*: ####
 ![image](https://github.com/user-attachments/assets/5d394ef4-3957-4d9b-b137-aa0a3045f294)
 > Đây là công thức tích chập (Convolution) - nền tảng cốt lõi và là công thức tổng quát trong biến đổi wavelet rời rạc 
-> * Với x[k] là tín hiệu đầu vào
-> * g[n - k] là đáp ứng xung (là phản ứng của hệ thống để đáp ứng với một số thay đổi bên ngoài, có thể là bộ học hay một hàm gì đó,...) 
-> * y[n] là tín hiệu đầu ra 
-- Khi thực hiện tích chập x[n] với g[n] bất kỳ, nghĩa là bạn đang áp dụng hệ thống có đáp ứng xung là g[n] lên tín hiệu x[n]
+> * Với `x[k]` là tín hiệu đầu vào
+> * `g[n - k]` là đáp ứng xung (là phản ứng của hệ thống để đáp ứng với một số thay đổi bên ngoài, có thể là bộ học hay một hàm gì đó,...) 
+> * `y[n]` là tín hiệu đầu ra 
+- Khi thực hiện tích chập `x[n]` với `g[n]` bất kỳ, nghĩa là bạn đang áp dụng hệ thống có đáp ứng xung là `g[n` lên tín hiệu `x[n]`
 - Trong trường hợp của Wavelet, đáp ứng xung là bộ lọc thông thấp `g[n]` và bộ lọc thông cao `h[n]`, dưới đây là công thức được áp dụng vào việc chia tần số ban đầu
 thành các hệ lọc con (subband filters) trong biến đổi wavelet <br>
 ![image](https://github.com/user-attachments/assets/666b0a68-7cbb-43ca-a76c-7838208d8add)

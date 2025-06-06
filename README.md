@@ -76,7 +76,7 @@ Tín hiệu được chia thành:
  - Thành thần chi tiết (Details): thành phần tần số cao (nét, đỉnh)
 
 Như hình ảnh bạn thấy, nó chính là công thức tích chập, nhưng sau đó ta chỉ giữ mỗi giá trị cách 2 mẫu (downsampling) để giảm kích thước dữ liệu <br>
-Sau mỗi tầng, phần xấp xỉ (thành phần tần số thấp) sẽ được tiếp tục phân tích tiếp - tạo thành 1 cây phân rã, cây phân rã này còn được gọi là **filter bank** 
+Sau mỗi tầng, phần xấp xỉ (thành phần tần số thấp) sẽ được tiếp tục phân tích tiếp - tạo thành 1 cây phân rã, cây phân rã này còn được gọi là **filter bank** <br>
 ![image](https://github.com/user-attachments/assets/b9b24823-e6f3-4310-a35c-3f15d27deaa9)
 #### ✅ *Ưu điểm*: #### 
  - Gọn nhẹ, hiệu quả, dễ áp dụng

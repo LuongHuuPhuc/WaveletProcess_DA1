@@ -31,33 +31,33 @@ Trong xử lý tín hiệu, chủ yếu dùng 2 loại chính:
 * Continuous Wavelet Transform (CWT): Biến đổi Wavelet liên tục
 
 #### 1. Biến đổi Wavelet liên tục (CWT) ####
-* *Ý tưởng:* CWT quét tín hiệu bằng 1 wavelet mẹ được co giãn liên tục (thang a) và dịch chuyển liên tục (dịch b). Tức là ta 
+*Ý tưởng:* CWT quét tín hiệu bằng 1 wavelet mẹ được co giãn liên tục (thang a) và dịch chuyển liên tục (dịch b). Tức là ta 
 kiểm tra tín hiệu ở mọi độ rộng và mọi vị trí - cực kỳ chi tiết <br>
-* *Công thức*: <br> 
+*Công thức*: <br> 
 ![image](https://github.com/user-attachments/assets/1a9edeac-40d8-49af-bc07-5c5f1c252873)
 
-* 📊 *Kết quả*: <br>
+📊 *Kết quả*: <br>
    - Trả về ma trận 2D: Hàng là thang (scale), cột là thời gian
    - Biểu diễn rất chi tiết về thời gian - tần số
    - Có thể vẽ biểu đồ thời gian đồ thị thời gian - tần số giống như spectrogram nhưng mượt hơn
   ![image](https://github.com/user-attachments/assets/28917c3e-53db-449c-a082-0d98776bc7e0)
-* ✅ *Ưu điểm*: <br>
+✅ *Ưu điểm*: <br>
 - Hiển thị trực quan, đẹp, lý tưởng cho phân tích tín hiệu y sinh và xem biến thiên tín hiệu
 - Không bỏ sót thông tin (do liên tục)
-* ❌ *Nhược điểm*: <br>
+❌ *Nhược điểm*: <br>
 - Rất tốn thời gian và bộ nhớ (vì tính ở mọi a và b)
 - Không dùng trực tiếp cho xử lý hoặc nén (quá dư thừa thông tin)
-* *Ứng dụng*: <br>
+*Ứng dụng*: <br>
 - Phân tích dạng sóng (Waveform scalogram)
 - Kiểm tra nhanh vùng có nhiễu, đỉnh, biên
 - Visualize ECG, PCG, PPG theo thời gian - tần sô
 
-  #### 2. Biến đổi Wavelet rời rạc (DWT) ####
-  * *Ý tưởng*: <br>
-  Chỉ lấy một số hữu hạn giá trị của hệ số co giãn và dịch chuyển - thường theo dạng nhị phân:
-  - scale: a = 2^j (Thang)
-  - shift: b = k.2^j (Dịch)
-  Tức là: mỗi tầng phân tích tín hiệu ở độ phân giải thấp hơn gấp đôi
+#### 2. Biến đổi Wavelet rời rạc (DWT) ####
+* *Ý tưởng*: <br>
+Chỉ lấy một số hữu hạn giá trị của hệ số co giãn và dịch chuyển - thường theo dạng nhị phân:
+- scale: a = 2^j (Thang)
+- shift: b = k.2^j (Dịch)
+Tức là: mỗi tầng phân tích tín hiệu ở độ phân giải thấp hơn gấp đôi
 * *Công thức*: <br>
 ![image](https://github.com/user-attachments/assets/5d394ef4-3957-4d9b-b137-aa0a3045f294)
 Đây lả công thức tích chập (Convolution) - nền tảng cốt lõi và là công thức tổng quát trong biến đổi wavelet rời rạc 
@@ -66,5 +66,5 @@ kiểm tra tín hiệu ở mọi độ rộng và mọi vị trí - cực kỳ c
 > * y[n] là tín hiệu đầu ra 
 - Khi thực hiện tích chập x[n] với g[n] bất kỳ, nghĩa là bạn đang áp dụng hệ thống có đáp ứng xung là g[n] lên tín hiệu x[n]
 - Trong trường hợp của Wavelet, đáp ứng xung là bộ lọc thông thấp `g[n]` và bộ lọc thông cao `h[n]`, dưới đây là công thức được áp dụng vào việc chia tần số ban đầu
-thành các hệ lọc con (subband filters) trong biến đổi wavelet
+thành các hệ lọc con (subband filters) trong biến đổi wavelet <br>
 ![image](https://github.com/user-attachments/assets/666b0a68-7cbb-43ca-a76c-7838208d8add)

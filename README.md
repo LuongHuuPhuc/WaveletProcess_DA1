@@ -31,35 +31,36 @@ Trong xử lý tín hiệu, chủ yếu dùng 2 loại chính:
 * Continuous Wavelet Transform (CWT): Biến đổi Wavelet liên tục
 
 ### 1. Biến đổi Wavelet liên tục (CWT) ###
-#### *Ý tưởng:* #### CWT quét tín hiệu bằng 1 wavelet mẹ được co giãn liên tục (thang a) và dịch chuyển liên tục (dịch b). Tức là ta 
+#### *Ý tưởng:* #### 
+CWT quét tín hiệu bằng 1 wavelet mẹ được co giãn liên tục (thang a) và dịch chuyển liên tục (dịch b). Tức là ta 
 kiểm tra tín hiệu ở mọi độ rộng và mọi vị trí - cực kỳ chi tiết <br>
-#### *Công thức*: ####<br> 
+#### *Công thức*: ####
 ![image](https://github.com/user-attachments/assets/1a9edeac-40d8-49af-bc07-5c5f1c252873)
 
-#### 📊 *Kết quả*: #### <br>
+#### 📊 *Kết quả*: #### 
    - Trả về ma trận 2D: Hàng là thang (scale), cột là thời gian
    - Biểu diễn rất chi tiết về thời gian - tần số
    - Có thể vẽ biểu đồ thời gian đồ thị thời gian - tần số giống như spectrogram nhưng mượt hơn
   ![image](https://github.com/user-attachments/assets/28917c3e-53db-449c-a082-0d98776bc7e0)
-#### ✅ *Ưu điểm*: #### <br>
+#### ✅ *Ưu điểm*: #### 
   - Hiển thị trực quan, đẹp, lý tưởng cho phân tích tín hiệu y sinh và xem biến thiên tín hiệu
   - Không bỏ sót thông tin (do liên tục) <br>
-#### ❌ *Nhược điểm*: #### <br>
+#### ❌ *Nhược điểm*: #### 
   - Rất tốn thời gian và bộ nhớ (vì tính ở mọi a và b)
   - Không dùng trực tiếp cho xử lý hoặc nén (quá dư thừa thông tin) <br>
-#### *Ứng dụng*: #### <br>
+#### *Ứng dụng*: ####
   - Phân tích dạng sóng (Waveform scalogram)
   - Kiểm tra nhanh vùng có nhiễu, đỉnh, biên
   - Visualize ECG, PCG, PPG theo thời gian - tần số
 
 ### 2. Biến đổi Wavelet rời rạc (DWT) ###
-#### *Ý tưởng*: #### <br>
+#### *Ý tưởng*: #### 
 Chỉ lấy một số hữu hạn giá trị của hệ số co giãn và dịch chuyển - thường theo dạng nhị phân:
 - scale: a = 2^j (Thang)
 - shift: b = k.2^j (Dịch)
 Tức là: mỗi tầng phân tích tín hiệu ở độ phân giải thấp hơn gấp đôi
 
-#### *Công thức*: #### <br>
+#### *Công thức*: ####
 ![image](https://github.com/user-attachments/assets/5d394ef4-3957-4d9b-b137-aa0a3045f294)
 > Đây là công thức tích chập (Convolution) - nền tảng cốt lõi và là công thức tổng quát trong biến đổi wavelet rời rạc 
 > * Với x[k] là tín hiệu đầu vào

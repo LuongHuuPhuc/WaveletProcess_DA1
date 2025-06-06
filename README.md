@@ -6,6 +6,7 @@ Chuyển tín hiệu từ miền thời gian sang miền tần số <br>
 * Dùng các hàm sin và cos (sóng hình sin) làm cơ sở để phân tích tín hiệu 
 * Giả định tín hiệu là tuần hoàn và kéo dài vô tận 
 * Không biết tại thời điểm nào tần số cụ thể nào xuất hiện, chỉ biết có những tần số nào xuất hiện trong tín hiệu <br> 
+![image](https://github.com/user-attachments/assets/bc8348da-455f-41b1-afb8-852c4bcdc7f2)
 
 ## 2. Biến đổi Wavelet (Wavelet Transform) ##
 *MỤC TIÊU:* <br>

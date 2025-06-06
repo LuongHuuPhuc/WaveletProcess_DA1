@@ -43,14 +43,14 @@ kiểm tra tín hiệu ở mọi độ rộng và mọi vị trí - cực kỳ c
   ![image](https://github.com/user-attachments/assets/28917c3e-53db-449c-a082-0d98776bc7e0)
 ✅ *Ưu điểm*: <br>
 - Hiển thị trực quan, đẹp, lý tưởng cho phân tích tín hiệu y sinh và xem biến thiên tín hiệu
-- Không bỏ sót thông tin (do liên tục)
+- Không bỏ sót thông tin (do liên tục) <br>
 ❌ *Nhược điểm*: <br>
 - Rất tốn thời gian và bộ nhớ (vì tính ở mọi a và b)
 - Không dùng trực tiếp cho xử lý hoặc nén (quá dư thừa thông tin)
 Ứng dụng*: <br>
 - Phân tích dạng sóng (Waveform scalogram)
 - Kiểm tra nhanh vùng có nhiễu, đỉnh, biên
-- Visualize ECG, PCG, PPG theo thời gian - tần sô
+- Visualize ECG, PCG, PPG theo thời gian - tần số
 
 ### 2. Biến đổi Wavelet rời rạc (DWT) ###
 *Ý tưởng*: <br>

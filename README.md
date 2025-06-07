@@ -1,4 +1,4 @@
-# **Phân biệt biến đổi Wavelet và biến đôi Fourier** #
+# **Phân biệt biến đổi Wavelet và biến đổi Fourier** #
 ## 1. Biến đổi Fourier (Fourier Transform) ##
 *MỤC TIÊU:* <br>
 Chuyển tín hiệu từ miền thời gian sang miền tần số <br>

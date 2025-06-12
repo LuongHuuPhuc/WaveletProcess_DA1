@@ -7,5 +7,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 17)
 
+# Duong dan toi thu vien wavelib va header de dung cho cac folder con
+set(WAVELIB_ROOT "${CMAKE_SOURCE_DIR}/../wavelib")
+set(WAVELIB_INCLUDE_DIRS PRIVATE
+    "${WAVELIB_ROOT}/header"
+    "${WAVELIB_ROOT}/src"
+    "${WAVELIB_ROOT}/auxiliary"
+)
+set(WAVELIB_LIB "${WAVELIB_ROOT}/test/libwavelib.a")
+
+# Cho phep cac thu muc con dung cac bien tren 
+set(WAVELIB_INCLUDE_DIRS ${WAVELIB_INCLUDE_DIRS} PARENT_DIRECTORY)
+set(WAVELIB_LIB ${WAVELIB_LIB} PARENT_DIRECTORY)
+
 # Them subdirectory chua chuong trinh chinh
-add_subdirectory(main) # Tach rieng logic build chinh (main) qua add_subdirectory()
+# Tach rieng logic build chinh (main) qua add_subdirectory()
+add_subdirectory(denoise_test) 
+add_subdirectory(dwpt_test)
+add_subdirectory(dwt_test)

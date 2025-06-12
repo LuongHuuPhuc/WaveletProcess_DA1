@@ -84,8 +84,17 @@ Sau mỗi tầng, phần xấp xỉ (thành phần tần số thấp) sẽ đư�
  - Dễ dàng lọc nhiễu, phát hiện đỉnh, trích xuất đặc trưng
  - Có thể tái tạo lại tín hiệu gốc rõ ràng
 #### ❌ *Nhược điểm*: ####
+ - DWT truyền thống vốn chỉ phân tách nút hệ số tần thấp (low pass) tại mỗi mức, còn tần cao (high pass) thì không xử lý
  - Có thể bỏ sót một số chi tiết (do lấy mẫu rời rạc)
  - Không hiển thị mượt như CWT
+``` yaml
+Level 0:         X
+                 |
+Level 1:       [L]     H
+               |
+Level 2:     [LL]     LH
+
+```
 #### *Ứng dụng*: ####
  - Lọc nhiễu ECG, PPG, PCG
  - Phát hiện đỉnh R trong ECG

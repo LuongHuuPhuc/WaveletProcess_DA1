@@ -13,12 +13,14 @@ set(WAVELIB_INCLUDE_DIRS PRIVATE
     "${WAVELIB_ROOT}/header"
     "${WAVELIB_ROOT}/src"
     "${WAVELIB_ROOT}/auxiliary"
+    CACHE INTERNAL "Include paths for wavelib"
 )
-set(WAVELIB_LIB "${WAVELIB_ROOT}/test/libwavelib.a")
+set(WAVELIB_LIB_DIR "${WAVELIB_ROOT}/build/Bin" CACHE INTERNAL "")
 
 # Cho phep cac thu muc con dung cac bien tren 
-set(WAVELIB_INCLUDE_DIRS ${WAVELIB_INCLUDE_DIRS} PARENT_DIRECTORY)
-set(WAVELIB_LIB ${WAVELIB_LIB} PARENT_DIRECTORY)
+# set(WAVELIB_INCLUDE_DIRS ${WAVELIB_INCLUDE_DIRS} PARENT_DIRECTORY)
+# set(WAVELIB_LIB_DIR ${WAVELIB_LIB_DIR} PARENT_DIRECTORY)
+# set(WAVELIB_LIB_NAME ${WAVELIB_LIB_NAME} PARENT_DIRECTORY)
 
 # Them subdirectory chua chuong trinh chinh
 # Tach rieng logic build chinh (main) qua add_subdirectory()

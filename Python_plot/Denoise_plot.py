@@ -14,7 +14,7 @@ def read_signal_from_csv(filename):
 
 # Đọc tín hiệu
 original = read_signal_from_csv("D:\C-C++_project\WaveletProcess\PCG_dataText\Freq_test\HeartBeat_raw\800Hz/test3.csv")
-denoised = read_signal_from_csv("D:\C-C++_project\WaveletProcess\denoise_test/result_files/HeartBeat_800Hz_dn1.csv")
+denoised = read_signal_from_csv("D:\C-C++_project\WaveletProcess\denoise_test/result_files/HeartBeat_800Hz_dn3.csv")
 
 # Đảm bảo độ dài bằng nhau (nếu cần)
 min_len = min(len(original), len(denoised))

@@ -77,7 +77,7 @@ Tín hiệu được chia thành:
  - Thành thần chi tiết (`Details`): thành phần tần số cao (nét, đỉnh)
 
 Như hình ảnh bạn thấy, nó chính là công thức tích chập, nhưng sau đó ta chỉ giữ mỗi giá trị cách 2 mẫu (downsampling) để giảm kích thước dữ liệu <br>
-Sau mỗi tầng, phần xấp xỉ (thành phần tần số thấp) sẽ được tiếp tục phân tích tiếp - tạo thành 1 cây phân rã, cây phân rã này còn được gọi là **filter bank** <br>
+Sau mỗi tầng, phần xấp xỉ - Approximation (**thành phần tần số thấp**) sẽ được tiếp tục phân tích tiếp - tạo thành 1 cây phân rã, cây phân rã này còn được gọi là **filter bank** <br>
 ![image](https://github.com/user-attachments/assets/b9b24823-e6f3-4310-a35c-3f15d27deaa9)
 #### ✅ *Ưu điểm*: #### 
  - Gọn nhẹ, hiệu quả, dễ áp dụng
@@ -104,12 +104,16 @@ Level 2:     [LL]     LH
 DWT chính là một dạng đặc biệt của mã hóa băng con (subband coding), nhưng có thêm một số điều kiện để đảm bảo tái tạo tín hiệu hoàn hảo (perfect reconstruction) <br>
 ##### Giải thích #####
 - Mã hóa băng con là kỹ thuật chia tín hiệu thành các dải tần số con (low-pass và high-pass) → nén hoặc xử lý từng dải
-- DWT làm đúng việ đó, nhưng thêm:
+- DWT làm đúng việc đó, nhưng thêm:
    * Bộ lọc orthogonal hoặc biothogonal
    * Downsampling sau lọc để giảm dữ liệu
    * Có thể tái tạo lại tín hiệu gốc từ các hệ số (inverse DWT), gọi là Upsampling 
 
 **Do đó, DWT = mã hóa băng con + downsampling + đảm bảo tái tạo tín hiệu** 
+
+- Tín hiệu khi Upsampling nếu ta không vì mục đích lọc nhiễu thì nó sẽ sử dụng toàn bộ thành phần `Approximation coeff` và `Detail coeff` để khôi phục lại (reconstruct) tín hiệu 
+- Bản chất của DWT là để denoise bằng cách khi ta upsampling lại, ta sẽ bỏ đi hoặc giảm trọng số của một vài thành phần tần số của chi tiết (`Detail coeff`) vì nhiễu thường nằm ở tần số cao. Giữ lại `Approximation coeff` vì nó là thành phần chính của tín hiệu 
+
 ###  Khi nào nên dùng cái nào ? ###
 | Mục tiêu | Nên dùng | Giải thích |
 |----------|----------|------------|

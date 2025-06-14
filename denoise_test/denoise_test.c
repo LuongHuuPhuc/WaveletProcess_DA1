@@ -141,6 +141,17 @@ int main(void){
   }
   fclose(file_out);
 
+  // So sanh tin hieu dau vao voi chinh no de so sanh li tuong
+  printf("Self-comparison (input vs input):\n");
+  printf("RMSE: %lf\n", rmse(N, input, input));
+  printf("Corr coeff: %lf\n", corrcoef(N, input, input));
+
+  // So sanh tin hieu goc va tin hieu da xu ly
+  printf("Orignal signal vs Denoised signal:\n");
+  printf("RMSE: %lf\n", rmse(N, input, output));
+  printf("Corr coeff: %lf\n", corrcoef(N, input, output));
+
+
   //Clear
   free(input);
   free(output);

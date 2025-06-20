@@ -152,4 +152,6 @@ Nói đơn giản, moment giúp ta đo "hình dạng" hoặc "tính chất" củ
 > Hay dễ hiểu hơn, Wavelet có n moment triệt tiêu thì nó không "nhìn thấy" hay "nhạy cảm" hoặc "Phản ứng" với các tín hiệu mượt mà, biến đổi chậm (như đa thức tuyến tính, bậc 2,...), chỉ "nhạy cảm" với các tín hiệu có độ biến động nhanh, mạnh (biến thiên đột ngột)
 * Moment triệt tiêu càng cao thì khả năng lọc nhiễu càng tốt, làm mượt tín hiệu tốt hơn (do không phản ứng với các thành phần mượt, giao động ít), bắt được các chi tiết nhỏ, thay đổi đột ngột, giúp mô tả chính xác các đặc trưng cục bộ. 
 * Ngoài ra còn loại bỏ tốt nhiễu nền hoặc baseline mượt (Ví dụ như trong ECG có **nhiễu trôi nền** (baseline drift) dạng đường cong mượt do ảnh hưởng bởi di chuyển và môi trường xung quanh)
+![image](https://github.com/user-attachments/assets/8b538ad9-bce8-426e-b85d-593991f6749f)
+
 

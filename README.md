@@ -145,7 +145,8 @@ Moment trong toán học là đại lượng thể hiện đặc tính tổng qu
 > * Moment bậc 1: Trung bình (mean)
 > * Moment bậc 2: Phương sai (variance)
 > * ....
-> * Moment bậc n: Đo sự thay đối của hàm theo cấp số n 
+> * Moment bậc n: Đo sự thay đối của hàm theo cấp số n
+
 Nói đơn giản, moment giúp ta đo "hình dạng" hoặc "tính chất" của tín hiệu ở mức độ sâu hơn
 * Một wavelet được gọi là có n moment (triệt tiêu) nếu tích phân của wavelet với bất kỳ đa thức bậc < n đều bằng 0 (trả hết giá trị về 0)
 

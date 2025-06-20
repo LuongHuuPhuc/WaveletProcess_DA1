@@ -121,3 +121,35 @@ DWT chính là một dạng đặc biệt của mã hóa băng con (subband codi
 | Lọc nhiễu tín hiệu PCG, ECG, PPG | DWT | Loại bỏ hệ số chi tiết nhỏ, tái tạo tín hiệu | 
 | Trích xuất đặc trưng để đưa vào học máy | DWT | Dễ lượng hóa và lưu trữ |
 | Phân tích sâu về nhịp tim, âm tim |  CWT/DWT | Tùy vào mục tiêu trực quan (CWT) hay xử lý (DWT) |
+
+# **Các họ trong Wavelet** # 
+Wavelet sinh ra để khắc phục nhược điểm của Biến đổi Fourier: Không thể phân tích tín hiệu theo thời gian - tần số khi tín hiệu biến thiên <br>
+Tuy nhiên môi loại tín hiệu lại cần "góc nhìn" riêng: có cái cần độ phân giải thời gian cao, cái cần độ mượt, có cái cần đối xứng,... nên không có "1 wavelet mẹ" nào phù hợp với mọi loại tín hiệu <br>
+Vì thế các nhà toán học, kỹ sư đã phát triển ra nhiều họ wavelet, mỗi họ là một dòng "kính lúp đặc biệt" để nhìn tín hiệu theo cách tối ưu cho bài toán cụ thể 
+
+## **Các họ wavelet phổ biến** ## 
+| Họ Wavelet | Tên |  Đặc điểm chính | Dùng tốt cho | Nhược điểm |
+|------------|-----|-----------------|--------------|------------|
+| Haar | `db1` | Đơn giản nhất, không trơn, phi đối xứng, phản ứng tốt với biên | Tín hiệu rời rạc, nhảy đột ngột, phân tích thô, ảnh | Gây méo tín hiệu, không mượt |
+| Daubechies | `dbN` | Rất phổ biến, mượt, không đối xứng, ngắn, được định nghĩa bằng bộ lọc tuyến tính (filter coefficients), số momemt tăng theo bậc -> Giữ được nhiều thông tin hơn| Tín hiệu sinh học, speech (âm thanh) |   |
+| Symlets | `symN` | Gần giống Daubechies nhưng đối xứng hơn | Tránh lêch pha, giữ biên dạng | | 
+| Coiflets | `coifN` | Giữ moment tốt hơn, cân bằng hài hòa | Nén dữ liêu, xử lý sinh học | | 
+| Biorthogonal | `biorX.Y` | Có hai loại wavelet mẹ: phân tích và tái tạo, đối xứng hoàn toàn | Nén ảnh (JPEG 2000), truyền thông | | 
+| Meyer, Morlet, Mexican Hat | Liên tục, dùng trong CWT | Phân tích tần số - thời gian chính xác |  |  | 
+
+### Momemt (Moment triệt tiêu) là gì ? ###
+
+Moment của 1 hàm là các phép đó định lượng nhất định liên quan đến hình dạng của đồ thị <br>
+Moment trong toán học là đại lượng thể hiện đặc tính tổng quát của một hàm theo kiểu thống kê:
+> * Moment bậc 0: Tổng của tất cả các giá trị 
+> * Moment bậc 1: Trung bình (mean)
+> * Moment bậc 2: Phương sai (variance)
+> * ....
+> * Moment bậc n: Đo sự thay đối của hàm theo cấp số n 
+Nói đơn giản, moment giúp ta đo "hình dạng" hoặc "tính chất" của tín hiệu ở mức độ sâu hơn
+* Một wavelet được gọi là có n moment (triệt tiêu) nếu tích phân của wavelet với bất kỳ đa thức bậc < n đều bằng 0 (trả hết giá trị về 0)
+
+> Hay dễ hiểu hơn, Wavelet có n moment triệt tiêu thì nó không "nhìn thấy" hay "nhạy cảm" hoặc "Phản ứng" với các tín hiệu mượt mà, biến đổi chậm (như đa thức tuyến tính, bậc 2,...), chỉ "nhạy cảm" với các tín hiệu có độ biến động nhanh, mạnh (biến thiên đột ngột)
+* Moment triệt tiêu càng cao thì khả năng lọc nhiễu càng tốt, làm mượt tín hiệu tốt hơn (do không phản ứng với các thành phần mượt, giao động ít), bắt được các chi tiết nhỏ, thay đổi đột ngột, giúp mô tả chính xác các đặc trưng cục bộ. 
+* Ngoài ra còn loại bỏ tốt nhiễu nền hoặc baseline mượt (Ví dụ như trong ECG có **nhiễu trôi nền** (baseline drift) dạng đường cong mượt do ảnh hưởng bởi di chuyển và môi trường xung quanh)
+

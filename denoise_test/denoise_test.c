@@ -16,7 +16,7 @@
  * \note - Phat hien dieu kien y sinh (Dinh R trong ECG, S1-S2 trong PCG, Bien dong tin hieu huyet ap trong PPG)
  */
 
-static const char *file_path = "D:/C-C++_project/WaveletProcess/PCG_dataText/Freq_test/HeartBeat_raw/800Hz/test3.csv";
+static const char *file_path = "D:/C-C++_project/WaveletProcess/Data_text/ECG_samples/NoFilter/data_ecg_noFilter_1st.csv";
 
 /**
  * @brief Root Mean Square Error (RMSE) dung de danh gia muc do sai lech trung binh giua tin hieu goc va sau khi xu ly
@@ -87,7 +87,8 @@ int main(void){
   FILE *file_in, *file_out;
   double *input = NULL, *output = NULL;
   int capacity = MAX_LEN;
-  int N = 0, J = 4;
+  int N = 0; //So luong mau cua tin hieu (do dai)
+  int J = 4; //So muc phan ra (Bao nhieu lan thuc hien downsampling)
   char line[128];
 
   //Mang tam chua du lieu (dung mang dong de chua duoc nhieu hon)
@@ -130,7 +131,7 @@ int main(void){
   denoise(obj, input, output);
 
   // Ghi ket qua ra file
-  file_out = fopen("D:/C-C++_project/WaveletProcess/denoise_test/result_files/output_denoised.csv", "w");
+  file_out = fopen("D:/C-C++_project/WaveletProcess/denoise_test/result_files/ECG_results/output_denoised.csv", "w");
   if(!file_out){
     printf("Can not write to output file.csv\n");
     return -1;

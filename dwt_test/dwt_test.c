@@ -29,11 +29,6 @@ static double __attribute__((unused))absmax(double *arr, int N){
   return max;
 }
 
-
-int main(void){
-
-}
-
 // Ham main xu ly DWT downsampling + upsampling 
 int main(void){
   double *input = NULL, *reconstructed = NULL, *diff = NULL;

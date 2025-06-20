@@ -13,8 +13,8 @@ def read_signal_from_csv(filename):
     return np.array(signal)
 
 # Đọc tín hiệu
-original = read_signal_from_csv("D:\C-C++_project\WaveletProcess\PCG_dataText\Freq_test\HeartBeat_raw\800Hz/test3.csv")
-denoised = read_signal_from_csv("D:\C-C++_project\WaveletProcess\denoise_test/result_files/HeartBeat_800Hz_dn3.csv")
+original = read_signal_from_csv(r"D:\C-C++_project\WaveletProcess\Data_text\ECG_samples\NoFilter\data_ecg_noFilter_1st.csv")
+denoised = read_signal_from_csv(r"WaveletProcess/denoise_test/result_files/ECG_results/data_ecg_noFilter_1st_dn.csv")
 
 # Đảm bảo độ dài bằng nhau (nếu cần)
 min_len = min(len(original), len(denoised))

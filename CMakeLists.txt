@@ -23,7 +23,8 @@ set(WAVELIB_LIB_DIR "${WAVELIB_ROOT}/build/Bin" CACHE INTERNAL "")
 # set(WAVELIB_LIB_NAME ${WAVELIB_LIB_NAME} PARENT_DIRECTORY)
 
 # Them subdirectory chua chuong trinh chinh
-# Tach rieng logic build chinh (main) qua add_subdirectory()
-add_subdirectory(denoise_test) 
-add_subdirectory(dwpt_test)
-add_subdirectory(dwt_test)
+# Tach rieng logic build cac chuong trinh thuc thi qua add_subdirectory()
+# Trong cac folder nay phai chua cac file CMakeLists.txt
+add_subdirectory("denoise_test/main") 
+add_subdirectory("dwpt_test/main")
+add_subdirectory("dwt_test/main")

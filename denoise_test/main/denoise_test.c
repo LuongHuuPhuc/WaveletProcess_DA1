@@ -123,7 +123,7 @@ int main(void){
 
   //Xu ly 
   denoise_object obj = denoise_init(N, J, "db5");
-  setDenoiseMethod(obj, "visushrink");
+  setDenoiseMethod(obj, "visushrink"); //Thuat toan tim threshold
   setDenoiseWTMethod(obj, "dwt");
   setDenoiseWTExtension(obj, "sym");
   setDenoiseParameters(obj, "soft", "all");

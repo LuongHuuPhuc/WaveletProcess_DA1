@@ -74,7 +74,7 @@ Tức là: mỗi tầng phân tích tín hiệu ở độ phân giải thấp h�
 #### 📊 *Kết quả* ####
 Tín hiệu được chia thành:
  - Thành phần xấp xỉ (`Approximation`): thành phần tần số thấp (thô)
- - Thành thần chi tiết (`Details`): thành phần tần số cao (nét, đỉnh)
+ - Thành thần chi tiết (`Details`): thành phần tần số cao (nét, đỉnh, thường là nhiễu, dao động mạnh, biến thiên nhanh)
 
 Như hình ảnh bạn thấy, nó chính là công thức tích chập, nhưng sau đó ta chỉ giữ mỗi giá trị cách 2 mẫu (downsampling) để giảm kích thước dữ liệu <br>
 Sau mỗi tầng, phần xấp xỉ - Approximation (**thành phần tần số thấp**) sẽ được tiếp tục phân tích tiếp - tạo thành 1 cây phân rã, cây phân rã này còn được gọi là **filter bank** <br>
@@ -107,12 +107,42 @@ DWT chính là một dạng đặc biệt của mã hóa băng con (subband codi
 - DWT làm đúng việc đó, nhưng thêm:
    * Bộ lọc orthogonal hoặc biothogonal
    * Downsampling sau lọc để giảm dữ liệu
-   * Có thể tái tạo lại tín hiệu gốc từ các hệ số (inverse DWT), gọi là Upsampling 
+   * Có thể tái tạo lại tín hiệu gốc từ các hệ số (inverse DWT), gọi là upsampling 
 
-**Do đó, DWT = mã hóa băng con + downsampling + đảm bảo tái tạo tín hiệu** 
+**Do đó, DWT = mã hóa băng con + downsampling + đảm bảo tái tạo tín hiệu (upsampling)** 
 
 - Tín hiệu khi Upsampling nếu ta không vì mục đích lọc nhiễu thì nó sẽ sử dụng toàn bộ thành phần `Approximation coeff` và `Detail coeff` để khôi phục lại (reconstruct) tín hiệu 
 - Bản chất của DWT là để denoise bằng cách khi ta upsampling lại, ta sẽ bỏ đi hoặc giảm trọng số của một vài thành phần tần số của chi tiết (`Detail coeff`) vì nhiễu thường nằm ở tần số cao. Giữ lại `Approximation coeff` vì nó là thành phần chính của tín hiệu 
+
+### Phân rã tín hiệu trong DWT ###
+Phân rã tín hiệu DWT (DWT Decompositon) hay cây phân rã DWT (DWT Decomposition Tree) biểu diễn sự phân rã của tín hiệu tuần tự từ thấp đến cao tần thông qua hệ số A (Approximation) và D (Details)
+* Nó được gọi là cây bởi vì nó có hình dạng rẽ nhánh giống như cây: 
+  - Mỗi mức xấp xỉ A lại tiếp tục phân rã thành các nhánh A và D khác
+* Tín hiệu S (gốc) -> Phân rã tín hiệu thành các hệ số A và D theo từng mức (level)
+
+```markdown
+        S
+       / \
+     A1   D1
+    / \
+  A2   D2
+ / \
+A3  D3
+```
+
+Đây là hình ảnh mô phỏng quá trình phân rã tín hiệu với mức phân rã là 3: 
+| Phần   | Mô tả                                          | Tần số                |
+| ------ | ---------------------------------------------- | --------------------- |
+| **S**  | Tín hiệu gốc (original signal)                 | Full band             |
+| **A1** | Xấp xỉ cấp 1 – sau khi lọc tần số thấp lần đầu | Giảm 1 nửa băng thông |
+| **D1** | Chi tiết cấp 1 – thành phần tần số cao cấp 1   | Cao nhất              |
+| **A2** | Tiếp tục phân rã A1                            | ...                   |
+| **D2** | Chi tiết cấp 2 – phần tần số cao từ A1         | Trung bình            |
+| **A3** | Xấp xỉ cấp 3 – phần tín hiệu tần số rất thấp   | Thấp nhất             |
+| **D3** | Chi tiết cấp 3 – phần tần số cao từ A2         | Vừa                   |
+
+* Kết quả đầu ra sau quá trình phân rã DWT là các thành phần `D1, D2, D3, A3`
+* Thành phần `A3` chính là phần chứa xu hướng tổng thế, mượt mà và giàu thông tin của tín hiệu gốc
 
 ###  Khi nào nên dùng cái nào ? ###
 | Mục tiêu | Nên dùng | Giải thích |
@@ -154,5 +184,3 @@ Nói đơn giản, moment giúp ta đo "hình dạng" hoặc "tính chất" củ
 * Moment triệt tiêu càng cao thì khả năng lọc nhiễu càng tốt, làm mượt tín hiệu tốt hơn (do không phản ứng với các thành phần mượt, giao động ít), bắt được các chi tiết nhỏ, thay đổi đột ngột, giúp mô tả chính xác các đặc trưng cục bộ. 
 * Ngoài ra còn loại bỏ tốt nhiễu nền hoặc baseline mượt (Ví dụ như trong ECG có **nhiễu trôi nền** (baseline drift) dạng đường cong mượt do ảnh hưởng bởi di chuyển và môi trường xung quanh)
 ![image](https://github.com/user-attachments/assets/8b538ad9-bce8-426e-b85d-593991f6749f)
-
-

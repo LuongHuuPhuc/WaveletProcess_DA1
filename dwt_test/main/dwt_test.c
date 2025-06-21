@@ -6,8 +6,8 @@
 #include <string.h>
 
 #define MAX_SIZE    100000
-#define INPUT_PATH  "D:/C-C++_project/WaveletProcess/PCG_dataText/Freq_test/HeartBeat_raw/1000Hz/test1.csv"
-#define OUTPUT_PATH "D:/C-C++_project/WaveletProcess/dwt_test/reconstructed_files/HeartBeat_1000Hz_dwt1.csv"
+#define INPUT_PATH  "D:/C-C++_project/WaveletProcess/Data_text/PCG_samples/noFilter/HeartBeat_raw/1000Hz/test1.csv"
+#define OUTPUT_PATH "D:/C-C++_project/WaveletProcess/dwt_test/result_files/approx_files/output.csv"
 
 /**
  * @brief Ham tinh gia tri tuyet doi lon nhat cua 2 tin hieu goc va tin hieu ban dau
@@ -67,7 +67,7 @@ int main(void){
   fclose(file_in);
 
   // Khoi tao wavelet
-  wave_object obj = wave_init("db4");
+  wave_object obj = wave_init("sym4");
   int J = 4; // Cap phan ra wavelet
 
   wt_object wt  = wt_init(obj, "dwt", N, J);
@@ -89,15 +89,15 @@ int main(void){
   // Thuc hien IDWT (Inverse Dicrete Wavelet Transform) de phuc hoi lai tin hieu
   idwt(wt, reconstructed);
 
-  // Tinh sai so tuyet doi
-  for(int i = 0; i < N; ++i){
+  //Tinh sai so tuyet doi
+  for(int i = 0; i < wt->siglength; ++i){
     diff[i] =  input[i] - reconstructed[i];
   }
 
-  // Tinh do chech lech giua 2 tin hieu phuc hoi - tin hieu goc
-  printf("Gia tri sai so tuyet doi lon nhat (MAX error): %lf\n", absmax(diff, N));
+  //Tinh do chech lech giua 2 tin hieu phuc hoi - tin hieu goc
+  printf("Gia tri sai so tuyet doi lon nhat (MAX error): %lf\n", absmax(diff, wt->siglength));
 
-  // Ghi tin hieu phuc hoi ra file 
+  //Ghi tin hieu phuc hoi ra file 
   file_out = fopen(OUTPUT_PATH, "w");
   if(!file_out){
     printf("Can not write to output.csv\n");
@@ -119,6 +119,6 @@ int main(void){
   wave_free(obj);
   wt_free(wt);
 
-  printf("Xu ly hoan tat. Da ghi du lieu vao file csv\n");
+  printf("Xu ly oan tat. Da ghi du lieu vao file csv\n");
   return 0;
 }

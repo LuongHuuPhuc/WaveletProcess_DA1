@@ -129,6 +129,7 @@ Phân rã tín hiệu DWT (DWT Decompositon) hay cây phân rã DWT (DWT Decompo
  / \
 A3  D3
 ```
+![image](https://github.com/user-attachments/assets/ffc40889-32e1-46aa-975d-0163e2d7cfdf)
 
 Đây là hình ảnh mô phỏng quá trình phân rã tín hiệu với mức phân rã là 3: 
 | Phần   | Mô tả                                          | Tần số                |

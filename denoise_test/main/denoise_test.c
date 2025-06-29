@@ -5,6 +5,7 @@
 #include <wavefunc.h>
 #include <wavelib.h>
 #include <wauxlib.h>
+#include <Signal_Erreck.h>
 
 #define MAX_LEN 127340
 
@@ -16,72 +17,9 @@
  * \note - Phat hien dieu kien y sinh (Dinh R trong ECG, S1-S2 trong PCG, Bien dong tin hieu huyet ap trong PPG)
  */
 
-static const char *file_path = "D:/C-C++_project/WaveletProcess/Data_text/ECG_samples/NoFilter/data_ecg_noFilter_1st.csv";
+static const char *file_path = "D:/C-C++_project/WaveletProcess/Data_text/PCG_samples/NoFilter/HeartBeat_raw/1000Hz/test2.csv";
+static const char *DENOISED_PATH = "D:/C-C++_project/WaveletProcess/denoise_test/result_files/PCG_results/output_denoised.csv";
 
-/**
- * @brief Root Mean Square Error (RMSE) dung de danh gia muc do sai lech trung binh giua tin hieu goc va sau khi xu ly
- * \brief - Dung de danh gia muc nhieu da duoc loai bo hieu qua hay khong 
- * 
- * @note - RMSE = 0, Hai tin hieu giong nhau hoan toan
- * \note - RMSE lon, tin hieu da bi sai lech nhieu so voi tin hieu goc
- * 
- * @return Sai so tuyet doi
- * 
- * @param N So luong mau trong moi day tin hieu `x` va `y` 
- * @param x Day gia tri goc (chuan)
- * @param y Day gia tri can danh gia (sau khi da loc)
- */
-static double __attribute__((unused))rmse(int N, double *x, double *y){
-  double rms = 0.0f;
-  int i;
-
-  for(i = 0; i < N; ++i){
-    rms += (x[i] - y[i] ) * (x[i] - y[i]);
-  }
-
-  rms = sqrt(rms / (double)N);
-  return rms;
-}
-
-/**
- * @brief He so tuong quan (Correlation Coefficient) - Danh gia muc do tuong quan tuyen tinh giua 2 tin hieu 
- * \brief - Dung de danh gia muc do giong nhau ve hinh dang, xem song sau khi xu ly co giu duoc hay khong, 
- * khong quan trong do lon tuyet doi
- *
- * @note Nam trong khoang `[-1, 1]`
- * \note - 1: Tuong quan tuyet doi duong (giong het ve hinh dang, khac bien do)
- * \note - 0: Khong tuong quan
- * \note - -1: Tuong quan tuyet doi am (doi xung nguoc lai)
- *  
- * @param N So luong mau trong moi day tin hieu `x` va `y` 
- * @param x Day gia tri goc (chuan)
- * @param y Day gia tri can danh gia (sau khi da loc)
- */
-static double __attribute__((unused))corrcoef(int N, double *x, double *y){
-  double cc, xm, ym, tx, ty, num, den1, den2;
-  int i ;
-  xm = ym = 0.0f;
-  for(i = 0; i < N; ++i){
-    xm += x[i];
-    ym += y[i];
-  }
-
-  xm = xm / N;
-  ym = ym / N;
-  num = den1 = den2 = 0.0f;
-
-  for(i = 0; i < N; ++i){
-    tx = x[i] - xm;
-    ty = y[i] - ym;
-    num += (tx * ty);
-    den1 += (tx * tx);
-    den2 += (ty * ty);
-  }
-
-  cc = num / sqrt(den1 *den2);
-
-  return cc;
-}
 
 int main(void){
   FILE *file_in, *file_out;
@@ -131,7 +69,7 @@ int main(void){
   denoise(obj, input, output);
 
   // Ghi ket qua ra file
-  file_out = fopen("D:/C-C++_project/WaveletProcess/denoise_test/result_files/ECG_results/output_denoised.csv", "w");
+  file_out = fopen(DENOISED_PATH, "w");
   if(!file_out){
     printf("Can not write to output file.csv\n");
     return -1;

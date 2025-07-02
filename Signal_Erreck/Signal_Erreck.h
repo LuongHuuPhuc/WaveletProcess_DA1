@@ -22,6 +22,8 @@ extern "C"{
  * 
  * @note - RMSE = 0, Hai tin hieu giong nhau hoan toan
  * \note - RMSE lon, tin hieu da bi sai lech nhieu so voi tin hieu goc
+ * \note - La can bac hai cua MSE
+ * \note - Don vi giong voi du lieu goc
  * 
  * @return Sai so tuyet doi
  * 
@@ -30,6 +32,19 @@ extern "C"{
  * @param y Day gia tri can danh gia (sau khi da loc)
  */
 double __attribute__((unused))rmse(int N, double *x, double *y);
+
+/**
+ * @brief Sai so binh phuong trung binh (Mean Squared Error)
+ * 
+ * @note Khac voi rmse moi cai la rmse co can bac hai
+ * \note Don vi binh phuong 
+ * 
+ * @param N So luong mau 
+ * @param X Tin hieu goc 
+ * @param Y Tin hieu da xu ly 
+ * @return Gia tri MSE
+ */
+double __attribute__((unused))mse(int N, double *X, double *Y);
 
 /**
  * @brief He so tuong quan (Correlation Coefficient) - Danh gia muc do tuong quan tuyen tinh giua 2 tin hieu 
@@ -93,17 +108,13 @@ double __attribute__((unused))snr(int N, double *original, double *processed);
  */
 double __attribute__((unused))psnr(int N, double *original, double *processed);
 
+
 /**
- * @brief Sai so binh phuong trung binh (Mean Squared Error)
- * 
- * @note Khac voi rmse moi cai la rmse co can bac hai
- * 
- * @param N So luong mau 
- * @param X Tin hieu goc 
- * @param Y Tin hieu da xu ly 
- * @return Gia tri MSE
+ * @brief Ham de tinh thoi gian thuc thi ham 
+ * @return `time(ms)` - thoi gian chay cua ham
+ * @note Goi truoc va sau khi ham chay 
  */
-double __attribute__((unused))mse(int N, double *X, double *Y);
+double __attribute__((unused))process_count_ms();
 
 #ifdef __cplusplus
 }

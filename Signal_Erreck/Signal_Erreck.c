@@ -5,6 +5,7 @@ extern "C"{
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <sys/time.h>
 #include "Signal_Erreck.h"
 
 double __attribute__((unused))rmse(int N, double *x, double *y){
@@ -90,6 +91,12 @@ double __attribute__((unused))psnr(int N, double *original, double *processed){
     return INFINITY;
   }
   return 10.0 * log10((max_val * max_val) / mse_val);
+}
+
+double __attribute__((unused))process_count_ms(){
+  struct timeval tv;
+  gettimeofday(&tv, NULL);
+  return (tv.tv_sec * 1000.0) + (tv.tv_usec / 1000.0); // Chuyen thanh ms
 }
 
 #ifdef __cplusplus

@@ -11,7 +11,7 @@
 #define INPUT_PATH  "D:/C-C++_project/WaveletProcess/Data_text/PCG_samples/noFilter/HeartBeat_raw/800Hz/test2.csv"
 #define APPROX_PATH "D:/C-C++_project/WaveletProcess/dwt_test/result_files/cprocess_files/approx_files/output.csv"
 #define DETAIL_PATH "D:/C-C++_project/WaveletProcess/dwt_test/result_files/cprocess_files/detail_files/output.csv"
-#define RECONS_PATH "D:/C-C++_project/WaveletProcess/dwt_test/result_files/reconstructed_files/output.csv"
+#define RECONS_PATH "D:/C-C++_project/WaveletProcess/dwt_test/result_files/cprocess_files/reconstructed_files/output.csv"
 
 /**
  * @brief Ham luu gia tri he so phan ra Approximation/Detail cua tin hieu vao file.csv
